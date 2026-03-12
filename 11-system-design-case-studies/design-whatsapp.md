@@ -29,3 +29,24 @@ Message storage (NoSQL)
 * WebSocket clusters
 * Redis pub/sub
 * horizontal scaling
+
+## Architectural diagram
+
+```mermaid
+
+graph TD
+
+User --> LoadBalancer
+
+LoadBalancer --> WebSocketServer1
+LoadBalancer --> WebSocketServer2
+
+WebSocketServer1 --> MessagingService
+WebSocketServer2 --> MessagingService
+
+MessagingService --> Kafka
+
+Kafka --> MessageStorage
+Kafka --> NotificationService
+
+MessageStorage --> NoSQLDB

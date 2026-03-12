@@ -22,3 +22,23 @@ Services:
 CDN caching
 adaptive bitrate streaming
 microservices
+
+## Architectural diagram
+
+```mermaid
+graph TD
+
+User --> DNS
+DNS --> CDN
+
+CDN --> EdgeCache
+EdgeCache --> VideoService
+
+VideoService --> MetadataService
+VideoService --> RecommendationService
+
+MetadataService --> CatalogDB
+RecommendationService --> MLModels
+
+VideoService --> Storage
+Storage --> VideoEncodingPipeline

@@ -14,3 +14,19 @@ Client → WebSocket → Collaboration Service
 
 Operational transformation
 real-time synchronization
+
+##Architectural Diagram
+
+```mermaid
+
+graph TD
+
+User --> WebSocketGateway
+
+WebSocketGateway --> CollaborationService
+
+CollaborationService --> OperationalTransform
+
+OperationalTransform --> DocumentStorage
+
+DocumentStorage --> VersionHistory

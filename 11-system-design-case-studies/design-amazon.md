@@ -25,3 +25,24 @@ Order service
 Products → NoSQL
 Orders → SQL
 Search → Elasticsearch
+
+## Architectural diagram
+
+```mermaid
+
+graph TD
+
+User --> CDN
+CDN --> API_Gateway
+
+API_Gateway --> ProductService
+API_Gateway --> CartService
+API_Gateway --> OrderService
+
+OrderService --> PaymentService
+OrderService --> InventoryService
+
+OrderService --> EventBus
+
+EventBus --> ShippingService
+EventBus --> NotificationService
